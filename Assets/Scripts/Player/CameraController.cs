@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour {
 	public float minViewDistance = 1;
 	public int zoomRate = 30;
 	private int lerpRate = 5;
-	private float distance = 6;
+	private float distance = 4;
 	public float desiredDistance;
 	private float correctedDistance;
 	private float currentDistance;
@@ -27,13 +27,15 @@ public class CameraController : MonoBehaviour {
 	public float cameraTargetHeight = 1.0f;
 
 	void Start (){
+		// camera angle x and y
 		Vector3 angles = transform.eulerAngles;
 		x = angles.x;
 		y = angles.y;
-		distance = PlayerPrefs.GetFloat("CameraDistance", distance);
 		currentDistance = distance;
 		desiredDistance = distance;
 		correctedDistance = distance;
+		// setting camera height
+		cameraTargetHeight = 1.8f;
 	}
 
 	void LateUpdate () {
@@ -42,26 +44,18 @@ public class CameraController : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetMouseButton (1)) {
-			x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
-			y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
-		}
-
-		else if(!Player.Instance.isFlying && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) {
-			float targetRotationAngle = cameraTarget.eulerAngles.y;
-			float cameraRotationAngle = transform.eulerAngles.y;
-			x = Mathf.LerpAngle(cameraRotationAngle, targetRotationAngle, lerpRate * Time.deltaTime);
-		}
+		x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
+		y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
 
 		y = ClampAngle (y, -50, 80);
 
 		Quaternion rotation = Quaternion.Euler (y, x, 0);
-		
+
 		desiredDistance -= Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs (desiredDistance);
 		desiredDistance = Mathf.Clamp (desiredDistance, minViewDistance, maxViewDistance);
 		correctedDistance = desiredDistance;
 		currentDistance = correctedDistance;
-		
+
 		Vector3 position = cameraTarget.position - (rotation * Vector3.forward * desiredDistance);
 
 		position = cameraTarget.position - (rotation * Vector3.forward * currentDistance + new Vector3 (0, -cameraTargetHeight, 0));
@@ -87,7 +81,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	// set play camera preferences before quit
-	void OnApplicationQuit() 
+	void OnApplicationQuit()
 	{
 		PlayerPrefs.SetFloat("CameraDistance", currentDistance);
 	}
