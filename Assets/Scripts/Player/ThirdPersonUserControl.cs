@@ -29,7 +29,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
-			m_CamForward = Vector3.Scale (transform.forward, new Vector3 (1, 0, 1)).normalized;
+						m_CamForward = Vector3.Scale (transform.forward, new Vector3 (1, 0, 1)).normalized;
         }
 
 
@@ -56,22 +56,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // calculate move direction to pass to character
             if (m_Cam != null)
             {
-				
-				// calculate camera relative direction to move:
-				if ((h != 0)) {
-					m_CamForward = Vector3.Scale (transform.forward, new Vector3 (1, 0, 1)).normalized;
-				}
+							m_CamForward = Vector3.Scale (m_Cam.forward, new Vector3 (1, 0, 1)).normalized;
 
-				m_Move = v * m_CamForward + h * transform.right;
+							m_Move = v * m_CamForward + h * m_Cam.right;
             }
             else
             {
-                // we use world-relative directions in the case of no main camera
-                m_Move = v*Vector3.forward + h*Vector3.right;
+              // we use world-relative directions in the case of no main camera
+              m_Move = v*Vector3.forward + h*Vector3.right;
             }
 #if !MOBILE_INPUT
-			// walk speed multiplier
-	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
+						// walk speed multiplier
+	        	if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
 #endif
 
             // pass all parameters to the character control script
