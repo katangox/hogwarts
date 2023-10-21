@@ -1,13 +1,90 @@
 fileFormatVersion: 2
 guid: 06eb7a42c723f1e40b16c0706c7c2951
-timeCreated: 1456022207
-licenseType: Store
 SpeedTreeImporter:
-  serializedVersion: 4
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Billboard
+    second: {fileID: 2100000, guid: a6e99627465f3a940a1581134bfec7a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD0
+    second: {fileID: 2100000, guid: 167b0ccf9e8db9e44a402e572d5d9011, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD1
+    second: {fileID: 2100000, guid: c9268c7accfe5c94db3624fde100ffac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD2
+    second: {fileID: 2100000, guid: 0ddfda1fbb5b897439210643aebf09de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_1_LOD0
+    second: {fileID: 2100000, guid: ceb562a894c2874459d52c341ee55c85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_1_LOD1
+    second: {fileID: 2100000, guid: 053f7d1535b440843affbb59f2c287d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_1_LOD2
+    second: {fileID: 2100000, guid: 50d59da5e16f36d439cf21ed11daca2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FacingLeaves_4_LOD0
+    second: {fileID: 2100000, guid: 88a8c81221770474bbf131127e2003e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FacingLeaves_4_LOD1
+    second: {fileID: 2100000, guid: 748215f453800ac4bb79e36ec3bad4f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FacingLeaves_4_LOD2
+    second: {fileID: 2100000, guid: 439cfaa68ba66c3409c3f1c58ebd317e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD0
+    second: {fileID: 2100000, guid: de79f18aed1ce2e4585e0d0082b9496f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD1
+    second: {fileID: 2100000, guid: 257bd45e4b313cd488cccae78670911f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD2
+    second: {fileID: 2100000, guid: 099092187cb9ae748b0c134c8a397185, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_3_LOD0
+    second: {fileID: 2100000, guid: 634c7c913dc4beb49947b7e3869888b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_3_LOD1
+    second: {fileID: 2100000, guid: 2ee7c1673cb5f5b43beb2c6ee5e1139c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_3_LOD2
+    second: {fileID: 2100000, guid: cf55187712953bf4d9c7a5b26fb39396, type: 2}
+  serializedVersion: 6
   mainColor: {r: 1, g: 1, b: 1, a: 1}
-  specColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
-  shininess: 0.125
   alphaTestRef: 0.33
   bestWindQuality: 4
   hasBillboard: 1
@@ -19,6 +96,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 0
     windQuality: 4
   - height: 0.25
     castShadows: 1
@@ -27,6 +105,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 0
     windQuality: 4
   - height: 0.125
     castShadows: 1
@@ -35,6 +114,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 0
     windQuality: 4
   - height: 0.01
     castShadows: 0
@@ -43,13 +123,16 @@ SpeedTreeImporter:
     reflectionProbeUsage: 0
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 0
     windQuality: 1
   enableSmoothLODTransition: 1
   animateCrossFading: 1
   billboardTransitionCrossFadeWidth: 0.25
   fadeOutWidth: 0.25
   scaleFactor: 0.3048
-  materialVersion: 2
+  materialVersion: 3
+  materialLocation: 0
+  fileIDType: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
