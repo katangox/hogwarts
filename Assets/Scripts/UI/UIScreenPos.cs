@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class UIScreenPos : MonoBehaviour {
 
 	public GameObject follow;
-	
+
+	void Start() {
+		GetComponent<CanvasGroup> ().alpha = 0;
+	}
+
 	void LateUpdate () {
         if (follow == null || Camera.main == null) {
             return;

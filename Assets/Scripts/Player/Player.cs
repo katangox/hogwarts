@@ -425,7 +425,7 @@ public class Player : Photon.MonoBehaviour {
 	*
 	* @param int id item id
 	* @param int amount item quantity
-	* 
+	*
 	* @return bool
 	 */
     public bool addItem(int id, int amount = 1)
