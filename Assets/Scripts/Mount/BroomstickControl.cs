@@ -18,14 +18,18 @@ public class BroomstickControl : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		curSpeed = Mathf.Lerp(curSpeed, (Input.GetAxis ("Vertical"))*maxSpeed, 0.1f);
+		if (Input.GetKey(KeyCode.LeftShift)) {
+			curSpeed = Mathf.Lerp(curSpeed, (Input.GetAxis ("Vertical")) * 3 * maxSpeed, 0.03f);
+		} else {
+			curSpeed = Mathf.Lerp(curSpeed, (Input.GetAxis ("Vertical"))*maxSpeed, 0.03f);
+		}
+
     if (Input.GetKey("space"))
         upSpeed = Mathf.Lerp(upSpeed, maxSpeed, 0.1f);
     else
         upSpeed = 0f;
 
     latSpeed = Mathf.Lerp(latSpeed, (Input.GetAxis("Horizontal")) * maxSpeed, 0.1f);
-
 
     targetVelocity = new Vector3 (latSpeed, upSpeed, curSpeed);
 		targetVelocity = Camera.main.transform.TransformDirection (targetVelocity);
@@ -35,8 +39,8 @@ public class BroomstickControl : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKey("w")) {
-			var rotation = Quaternion.LookRotation((transform.position - Camera.main.transform.position + new Vector3(0, 2, 0)));
+		if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
+			var rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position + new Vector3(0, 2, 0));
 			transform.rotation = rotation;
 		}
 	}
