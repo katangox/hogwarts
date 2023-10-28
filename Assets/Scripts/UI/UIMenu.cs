@@ -13,14 +13,14 @@ public class UIMenu : MonoBehaviour {
 	public GameObject CharacterPanel;
 
 	public static UIMenu _instance;
-	
+
 	public static UIMenu Instance {
 		get
 		{
 			return _instance;
 		}
 	}
-	
+
 	public void Start () {
 		_instance = this;
 	}
@@ -31,11 +31,11 @@ public class UIMenu : MonoBehaviour {
 	}
 
 	public void showPanel (string name) {
-		
+
 		GameObject panel = (GameObject)this.GetType ().GetField (name).GetValue (this);
 		panel.SetActive (true);
 	}
-	
+
 	public void hideAllPanels() {
 		BagPanel.SetActive (false);
 		SellerPanel.SetActive (false);
