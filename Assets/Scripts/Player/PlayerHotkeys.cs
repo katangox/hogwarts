@@ -35,8 +35,8 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)) {
             Menu.Instance.gameObject.SetActive(!Menu.Instance.gameObject.GetActive());
         }
-        
-		if (Input.GetKeyDown (KeyCode.B)) {
+
+		if (Input.GetKeyDown (KeyCode.B) && Camera.main.GetComponent<CameraController>().isMounted != true) {
 			Menu.Instance.togglePanel("BagPanel");
 		}
 		if (Input.GetKeyDown (KeyCode.C)) {
@@ -86,6 +86,10 @@ public class PlayerHotkeys : MonoBehaviour
                 StartCoroutine("Broom");
             }
         } else {
+						Camera.main.GetComponent<CameraController>().mouseXSpeedMod = 5.0f;
+						Camera.main.GetComponent<CameraController>().mouseYSpeedMod = 3.0f;
+						Camera.main.GetComponent<CameraController>().isMounted = false;
+
             gameObject.GetComponent<Animator>().SetBool("Broomstick", false);
             gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
             gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
@@ -97,8 +101,22 @@ public class PlayerHotkeys : MonoBehaviour
     }
 
 	IEnumerator Broom(){
-		PlayerPanel.Instance.castingPanel.Cast ("Escoba voladora", 1);
+		PlayerPanel.Instance.castingPanel.Cast ("Escoba voladora", 3);
+
+		gameObject.GetComponent<BroomstickControl> ().curSpeed = 0.0f;
+
+		Player.Instance.anim.SetBool("InvokeSpell", true);
 		yield return new WaitForSeconds(1);
+		Player.Instance.anim.SetInteger("SpellType", 1);
+		Player.Instance.anim.SetBool("InvokeSpell", false);
+
+		yield return new WaitForSeconds(2);
+		Camera.main.GetComponent<CameraController>().mouseXSpeedMod = 1.2f;
+		Camera.main.GetComponent<CameraController>().mouseYSpeedMod = 1.2f;
+		Camera.main.GetComponent<CameraController>().isMounted = true;
+
+		gameObject.transform.position += new Vector3(0, 3, 0);
+
 		gameObject.GetComponent<Animator> ().SetBool ("Broomstick", true);
 		gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = false;
 		gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = false;

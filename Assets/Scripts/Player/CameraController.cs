@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour {
 	Quaternion curRotation;
 
 	public float cameraTargetHeight = 1.0f;
+	public Vector3 position;
 
 	void Start (){
 		// camera angle x and y
@@ -55,7 +56,7 @@ public class CameraController : MonoBehaviour {
 		y = ClampAngle (y, -50, 80);
 
 		if (isMounted) {
-			curRotation = Quaternion.Lerp(curRotation, Quaternion.Euler(y, x, 0), 0.04f);
+			curRotation = Quaternion.Lerp(curRotation, Quaternion.Euler(y, x, 0), 0.09f);
 		} else {
 			curRotation = Quaternion.Euler(y, x, 0);
 		}
