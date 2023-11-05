@@ -2,7 +2,7 @@
 
 public class Seller : NPC {
 	
-	public override void OnClick() {
+	private void OnTriggerEnter(Collider collider) {
         Menu.Instance.showPanel ("SellerPanel", false);
 	}
 

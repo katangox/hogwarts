@@ -76,6 +76,14 @@ public class Menu : MonoBehaviour {
 		GameObject panel = getPanel (name);
 		
 		panel.SetActive (!panel.GetActive());
+
+		if (panel.GetActive()) {
+			//unlock cursor for interractions
+        	Camera.main.GetComponent<CameraController>().UnlockCursor();
+		} else {
+			//unlock cursor for interractions
+        	Camera.main.GetComponent<CameraController>().LockCursor();
+		}
 	}
 	
 	public void hideAllPanels() {

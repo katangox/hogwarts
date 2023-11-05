@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Talker : NPC {
 
-    public override void OnClick() {
+    private void OnTriggerEnter(Collider collider) {
         Menu.Instance.showPanel("TalkPanel", false).GetComponent<TalkPanel>().showNPCText(Id);
     }
 }

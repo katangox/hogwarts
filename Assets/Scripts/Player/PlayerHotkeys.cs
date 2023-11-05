@@ -51,6 +51,10 @@ public class PlayerHotkeys : MonoBehaviour
         }
 
 		if(Input.GetKeyDown(KeyCode.E)){
+            Interract();
+		}
+
+		if(Input.GetKeyDown(KeyCode.Tab)){
             toggleBroomStick();
 		}
 
@@ -74,6 +78,10 @@ public class PlayerHotkeys : MonoBehaviour
 				PlayerCombat.Instance.spellCast(2);
 			}
 		}
+	}
+
+	public void Interract() {
+
 	}
 
     public void toggleLight () {

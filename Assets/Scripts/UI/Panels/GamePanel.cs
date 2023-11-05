@@ -13,6 +13,8 @@ public class GamePanel : MonoBehaviour, IDragHandler, IDropHandler {
 	}
 
 	public void OnEnable () {
+        //unlock cursor for interractions
+        Camera.main.GetComponent<CameraController>().UnlockCursor();
 		if (rect == null) {
 			rect = GetComponent<RectTransform>();
 		}
@@ -34,6 +36,8 @@ public class GamePanel : MonoBehaviour, IDragHandler, IDropHandler {
 	}
 
 	public void closePanel () {
+        //unlock cursor for interractions
+        Camera.main.GetComponent<CameraController>().LockCursor();
 		gameObject.SetActive (false);
 	}
 }

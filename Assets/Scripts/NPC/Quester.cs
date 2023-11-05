@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Quester : NPC
 {
-    public override void OnClick()
+    private void OnTriggerEnter(Collider collider)
     {
         List<int> quests = QuestManager.Instance.getByNPC(Id);
 

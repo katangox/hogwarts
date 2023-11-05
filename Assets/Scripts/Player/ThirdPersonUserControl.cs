@@ -35,7 +35,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-
              if (Chat.Instance.isWritting) {
                 return;
              }

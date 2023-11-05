@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour {
 
 	public bool isMounted = false;
 
-	public float maxViewDistance = 25;
+	public float maxViewDistance;
 	public float minViewDistance = 1;
 	public int zoomRate = 30;
 	private int lerpRate = 5;
@@ -26,11 +26,27 @@ public class CameraController : MonoBehaviour {
 	private bool reachedDist = true;
 	public float cameraCollisionSpeed = 2f;
 	Quaternion curRotation;
+	public bool isInPanel;
 
-	public float cameraTargetHeight = 1.0f;
+	public float cameraTargetHeight;
 	public Vector3 position;
 
+	public void LockCursor(){
+		Cursor.lockState = CursorLockMode.Locked;
+		isInPanel = false;
+		Cursor.visible = false;
+	}
+
+	public void UnlockCursor(){
+		Cursor.lockState = CursorLockMode.None;
+		isInPanel = true;
+		Cursor.visible = true;
+	}
+
 	void Start (){
+		LockCursor();
+
+		maxViewDistance = 7;
 		// camera angle x and y
 		Vector3 angles = transform.eulerAngles;
 		x = angles.x;
@@ -45,20 +61,20 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void LateUpdate () {
-
-		if (GamePanel.isMovingAPanel) {
+		if (GamePanel.isMovingAPanel || isInPanel) {
 			return;
 		}
 
 		x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
 		y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
-
-		y = ClampAngle (y, -50, 80);
+		float z = y * -0.275f;
+		
+		y = ClampAngle (y, -50, 60);
 
 		if (isMounted) {
 			curRotation = Quaternion.Lerp(curRotation, Quaternion.Euler(y, x, 0), 0.09f);
 		} else {
-			curRotation = Quaternion.Euler(y, x, 0);
+			curRotation = Quaternion.Euler(y, x, z + 0.3f);
 		}
 
 		desiredDistance -= Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs (desiredDistance);
@@ -70,7 +86,11 @@ public class CameraController : MonoBehaviour {
 
 		position = cameraTarget.position - (curRotation * Vector3.forward * currentDistance + new Vector3 (0, -cameraTargetHeight, 0));
 
-		transform.rotation = curRotation;
+		if (isMounted) {
+			transform.rotation = curRotation;
+		} else {
+			transform.rotation = curRotation * Quaternion.Euler(0, 15, 0);
+		}
 		transform.position = position;
 
 		if (isHitting) {
